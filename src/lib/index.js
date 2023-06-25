@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import * as rv from 'rough-viz/dist/roughviz.min'
+import * as rv from 'rough-viz/dist/rough-viz.min'
 
 let lastId = 0;
 
@@ -7,10 +7,10 @@ const generateId = prefix => `${prefix}${'' + (++lastId)}`
 
 const wrap = rvComp => ({ prefix, ...props }) => {
   const ref = useRef()
-  const [ id ] = useState(generateId(prefix || 'roughviz'))
+  const [id] = useState(generateId(prefix || 'roughviz'))
   useEffect(() => {
     const { current: node } = ref
-    if (node) {
+    if (node && rvComp) {
       new rvComp({
         element: '#' + id,
         ...props
@@ -21,9 +21,9 @@ const wrap = rvComp => ({ prefix, ...props }) => {
         while (node.firstChild) {
           node.removeChild(node.firstChild)
         }
-      }      
+      }
     }
-  }, [ id, props, ref ])
+  }, [id, props, ref])
 
   return <div id={id} ref={ref} />
 }

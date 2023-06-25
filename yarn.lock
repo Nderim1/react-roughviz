@@ -9785,10 +9785,9 @@ rough-viz@Nderim1/roughViz:
     lodash.get "^4.4.2"
     roughjs "^4.0.0"
 
-rough-viz@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/rough-viz/-/rough-viz-1.0.6.tgz#5b5e2a33780fa187e6b9817628c97c60e22f7f03"
-  integrity sha512-6Vplj7xFDAuGsybDdU2L7mj36OSJKhNNpm4QSlJ9tW6ps8a0zz1ZTECz75Kb+n2JNVhvmMCqDQlCKCTAfHn6Rg==
+"rough-viz@ssh://git@github.com:Nderim1/roughViz.git":
+  version "1.0.3"
+  resolved "ssh://git@github.com:Nderim1/roughViz.git#1086a8381d8e3e3e382dbb0e71f2801ecc59a5b8"
   dependencies:
     d3-array "^2.3.1"
     d3-axis "^1.0.12"

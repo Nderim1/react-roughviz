@@ -53,6 +53,6 @@
     ]
   },
   "dependencies": {
-    "rough-viz": "Nderim1/roughViz"
+    "rough-viz": "ssh://git@github.com:Nderim1/roughViz.git"
   }
 }

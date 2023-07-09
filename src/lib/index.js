@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import * as rv from 'rough-viz'
+import * as rv from 'rough-viz/dist/roughviz.min'
 
 let lastId = 0;
 

@@ -26,6 +26,7 @@ export default function App() {
         }}
         title='Regions'
         colors={['red', 'orange', 'blue', 'skyblue']}
+        legend
         roughness={8}
         strokeWidth={3}
       />

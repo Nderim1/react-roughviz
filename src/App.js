@@ -17,18 +17,21 @@ export default function App() {
       />
       <Donut data={{
         labels: ['Norths', 'South', 'East', 'West'],
-        values: [10, 5, 8, 3]
+        values: [40, 5, 8, 3]
       }} y1='deaths' y2='years' />
       <Pie
         data={{
           labels: ['Norths', 'South', 'East', 'West'],
-          values: [10, 5, 8, 3]
+          values: [30, 5, 8, 3]
         }}
         title='Regions'
         colors={['red', 'orange', 'blue', 'skyblue']}
         legend
-        roughness={8}
-        strokeWidth={3}
+        roughness={2}
+        strokeWidth={1}
+        height={550}
+        width={300}
+        fillStyle='dots'
       />
       <StackedBar
         data={[

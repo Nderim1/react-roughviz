@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.StackedBar = exports.Scatter = exports.Pie = exports.Line = exports.Donut = exports.BarH = exports.Bar = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var rv = _interopRequireWildcard(require("rough-viz/dist/roughviz.umd.js"));
-var _excluded = ["prefix"];
+var _excluded = ["prefix", "width", "height"];
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -30,16 +30,27 @@ var generateId = function generateId(prefix) {
 var wrap = function wrap(rvComp) {
   return function (_ref) {
     var prefix = _ref.prefix,
+      width = _ref.width,
+      height = _ref.height,
       props = _objectWithoutProperties(_ref, _excluded);
     var ref = (0, _react.useRef)();
     var _useState = (0, _react.useState)(generateId(prefix || 'roughviz')),
       _useState2 = _slicedToArray(_useState, 1),
       id = _useState2[0];
+    var containerStyle = {};
+    if (width !== undefined && width !== null && width !== '') {
+      containerStyle.width = typeof width === 'number' ? "".concat(width, "px") : width;
+    }
+    if (height !== undefined && height !== null && height !== '') {
+      containerStyle.height = typeof height === 'number' ? "".concat(height, "px") : height;
+    }
     (0, _react.useEffect)(function () {
       var node = ref.current;
       if (node && rvComp) {
         new rvComp(_objectSpread({
-          element: '#' + id
+          element: '#' + id,
+          width: width,
+          height: height
         }, props));
       }
       return function () {
@@ -52,7 +63,8 @@ var wrap = function wrap(rvComp) {
     }, [id, props, ref]);
     return /*#__PURE__*/_react.default.createElement("div", {
       id: id,
-      ref: ref
+      ref: ref,
+      style: containerStyle
     });
   };
 };

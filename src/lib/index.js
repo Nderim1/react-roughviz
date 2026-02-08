@@ -5,14 +5,25 @@ let lastId = 0;
 
 const generateId = prefix => `${prefix}${'' + (++lastId)}`
 
-const wrap = rvComp => ({ prefix, ...props }) => {
+const wrap = rvComp => ({ prefix, width, height, ...props }) => {
   const ref = useRef()
   const [id] = useState(generateId(prefix || 'roughviz'))
+
+  const containerStyle = {}
+  if (width !== undefined && width !== null && width !== '') {
+    containerStyle.width = typeof width === 'number' ? `${width}px` : width
+  }
+  if (height !== undefined && height !== null && height !== '') {
+    containerStyle.height = typeof height === 'number' ? `${height}px` : height
+  }
+
   useEffect(() => {
     const { current: node } = ref
     if (node && rvComp) {
       new rvComp({
         element: '#' + id,
+        width,
+        height,
         ...props
       })
     }
@@ -25,7 +36,7 @@ const wrap = rvComp => ({ prefix, ...props }) => {
     }
   }, [id, props, ref])
 
-  return <div id={id} ref={ref} />
+  return <div id={id} ref={ref} style={containerStyle} />
 }
 
 export const Bar = wrap(rv.Bar)
